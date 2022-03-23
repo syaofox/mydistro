@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+# filename="${1##*/}"
+# extension="${filename##*.}"
+# filename="${filename%.*}"
+
+echo $1
+echo "${1}_tr.mp4"
+
+
+ffmpeg -i "$1" -c:v libx264 -preset medium -crf "${2:-18}" -vf scale=3840:-1 -c:a aac "${1}_tr.mp4"

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+PWDIR=$HOME/Repos/mydistro
+
+settheme() {
+
+    cp $PWDIR/dotfiles/X11/${1:-nord-light}/.Xresources ~/.Xresources  
+
+    mkdir -p ~/Pictures/wallpapers
+    cp ${PWDIR}/dotfiles/X11/${1:-nord-light}/${1:-nord-light}-16x10.jpg ~/Pictures/wallpapers
+    cp ${PWDIR}/dotfiles/X11/${1:-nord-light}/${1:-nord-light}-21x9.jpg ~/Pictures/wallpapers
+    
+    sed -i 's/.*feh.*/feh --bg-fill ~\/Pictures\/wallpapers\/'${1:-nord-light}'-16x10.jpg ~\/Pictures\/wallpapers\/'${1:-nord-light}'-21x9.jpg/' ~/.xinitrc
+    sed -i 's/.*feh.*/feh --bg-fill ~\/Pictures\/wallpapers\/'${1:-nord-light}'-16x10.jpg ~\/Pictures\/wallpapers\/'${1:-nord-light}'-21x9.jpg/' ~/.xsession
+
+    cp $PWDIR/dotfiles/X11/${1:-nord-light}/.Xresources ~/.Xresources  
+
+
+    mkdir -p  ~/.config/gtk-3.0/
+    cp ${PWDIR}/dotfiles/X11/${1:-nord-light}/settings.ini  ~/.config/gtk-3.0/settings.ini
+    cp ${PWDIR}/dotfiles/X11/${1:-nord-light}/.gtkrc-2.0 ~/.gtkrc-2.0   
+
+}
+
+choices="Nord Light\nNord Dark\nTeal Light\nTeal Dark\nTeal Green"
+chosen=$(echo -e "$choices" | dmenu -i -p "Select:")
+
+changed=0
+case "$chosen" in    
+    'Nord Light') 
+
+        settheme nord-light
+        changed=1
+    ;;
+    'Nord Dark')
+        settheme nord-dark
+        changed=1   
+    ;;
+    'Teal Light')
+        settheme teal-light
+        changed=1   
+    ;;
+    'Teal Dark')
+        settheme teal-dark
+        changed=1   
+    ;;
+    'Teal Green')
+        settheme teal-green
+        changed=1   
+    ;;
+esac
+
+if [ $changed = 1 ]; then
+    xrdb ~/.Xresources
+    notify-send "Theme changed" "Current Theme had switch to ${chosen}\!"
+fi
