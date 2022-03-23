@@ -1,0 +1,48 @@
+Xcursor.size: 16
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
+!! st
+*.borderpx: 2
+
+
+
+*.foreground:   #D8DEE9
+*.background:   #fafafa  
+*.cursorColor:  #D8DEE9
+
+*.color0: #3b4252
+*.color1: #bf616a
+*.color2: #a3be8c
+*.color3: #ebcb8b
+*.color4: #81a1c1
+*.color5: #b48ead
+*.color6: #88c0d0
+*.color7: #e5e9f0
+*.color8: #4c566a
+*.color9: #bf616a
+*.color10: #a3be8c
+*.color11: #ebcb8b
+*.color12: #81a1c1
+*.color13: #b48ead
+*.color14: #8fbcbb
+*.color15: #eceff4
+*.color256: #cccccc
+*.color257: #555555
+
+dwm.normfgcolor: #B6DADA
+dwm.normbgcolor: #333333
+dwm.normbordercolor: #003b3b
+
+dwm.selfgcolor: #DAECEC
+dwm.selbordercolor: #008080
+dwm.selbgcolor: #008080
+
+dmenu.foreground : #DAECEC
+dmenu.background : #008080
+dmenu.selforeground : #B6DADA
+dmenu.selbackground : #333333

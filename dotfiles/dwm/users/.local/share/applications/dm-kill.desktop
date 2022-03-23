@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/local/bin/dm-kill
+Name=Kill Process
+Categories=Utility;

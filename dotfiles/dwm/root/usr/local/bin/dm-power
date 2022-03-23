@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+choices="Logout\nReboot\nPower off"
+chosen=$(echo -e "$choices" | dmenu -i -p "Select:")
+
+case "$chosen" in
+    'Logout')
+        lchoices="Yes\nNo"
+        lchosen=$(echo -e "$lchoices" | dmenu -i -p "Confirm?:")
+        if [ $lchosen = "Yes" ]; then
+            pkill dwm
+        fi
+        
+    ;;
+    'Reboot') 
+        rchoices="Yes\nNo"
+        rchosen=$(echo -e "$rchoices" | dmenu -i -p "Confirm?:")
+        if [ $rchosen = "Yes" ]; then
+            shutdown -r now
+        fi
+    ;;
+    'Power off')
+        pchoices="Yes\nNo"
+        pchosen=$(echo -e "$pchoices" | dmenu -i -p "Confirm?:")
+        if [ $pchosen = "Yes" ]; then
+            shutdown -h now
+        fi
+    
+    ;;
+esac
+

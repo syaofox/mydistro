@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) setsid -f "$TERMINAL" -e htop ;;
+	3) notify-send " CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;
+	6) code "$0" ;;	
+esac
+
+tem=$(sensors | awk '/edge/ {print $2}')
+echo "^B2^^C0^  ${tem:1}"

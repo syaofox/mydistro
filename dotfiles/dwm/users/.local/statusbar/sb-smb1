@@ -1,0 +1,23 @@
+#!/bin/sh
+
+mountit(){
+    if ! mountpoint -q /mnt/shares/dnas ; then
+        mount /mnt/shares/dnas
+    else
+        umount /mnt/shares/dnas
+    fi
+    pkill -RTMIN+9 dwmblocks
+}
+
+case $BLOCK_BUTTON in
+	1) mountit;;
+    6) code "$0" ;;
+esac
+
+if ! mountpoint -q /mnt/shares/dnas ; then
+    dnas="[ DNAS  ]"
+else 
+    dnas="[ DNAS  ]"
+fi
+
+echo "^B3^^C0^ ${dnas}"

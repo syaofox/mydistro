@@ -1,0 +1,23 @@
+#!/bin/sh
+
+mountit(){
+    if ! mountpoint -q /mnt/shares/downs ; then
+        mount /mnt/shares/downs
+    else
+        umount /mnt/shares/downs
+    fi
+    pkill -RTMIN+11 dwmblocks
+}
+
+case $BLOCK_BUTTON in
+	1) mountit;;
+    6) code "$0" ;;
+esac
+
+if ! mountpoint -q /mnt/shares/downs ; then
+    downs="[ DOWNS  ]"
+else 
+    downs="[ DOWNS  ]"
+fi
+
+echo "^B3^^C0^${downs}"

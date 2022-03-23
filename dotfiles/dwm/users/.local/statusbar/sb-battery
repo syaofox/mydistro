@@ -1,0 +1,51 @@
+#!/bin/sh
+
+notify() {
+	notify-send -i battery-good-symbolic -h string:x-canonical-private-synchronous:battery "Battery" "$1"
+}
+
+case $BLOCK_BUTTON in
+	1) xfce4-power-manager-settings ;;
+	2) notify "$(acpi -b | awk -F ': |, ' '{printf "%s\n%s\n", $2, $4}')" ;;
+	3) dm-power;;
+	4) light -A 10 ;;
+	5) light -U 10 ;;
+	6) code "$0" ;;
+esac
+
+for battery in /sys/class/power_supply/BAT?*; do
+	# If non-first battery, print a space separator.
+	[ -n "${capacity+x}" ] && printf " "
+
+	capacity="$(cat "$battery/capacity" 2>&1)"
+	if [ "$capacity" -gt 90 ]; then
+		status=" "
+	elif [ "$capacity" -gt 70 ]; then
+		status=" "
+	elif [ "$capacity" -gt 50 ]; then
+		status=" "
+	elif [ "$capacity" -gt 30 ]; then
+		status=" "
+	elif [ "$capacity" -gt 10 ]; then
+		status=" "
+	else
+		status=" "
+	fi
+
+	# Sets up the status and capacity
+	case "$(cat "$battery/status" 2>&1)" in
+		Full) status="⚡" ;;
+		Discharging)
+			if [ "$capacity" -le 20 ]; then
+				status="$status"
+			fi
+			;;
+		Charging) status="ﮣ$status" ;;
+		"Not charging") status="ﮤ$status" ;;
+		Unknown) status="" ;;
+		*) exit 1 ;;
+	esac
+
+	# Prints the info
+	echo "^B5^^C0^ $status $capacity%"
+done && echo

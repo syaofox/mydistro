@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+case $BLOCK_BUTTON in
+	1)  dunstctl history-pop;;
+esac
+weekday=$(date '+%w')
+
+case $weekday in
+	1)  weekday="周一";;
+	2)  weekday="周二";;
+	3)  weekday="周三";;
+	4)  weekday="周四";;
+	5)  weekday="周五";;
+	6)  weekday="周六";;
+	0)  weekday="周日";;
+	*)	weekday="错误${weekday}";;
+esac
+
+echo " $(date '+%T %m/%d') ${weekday}"

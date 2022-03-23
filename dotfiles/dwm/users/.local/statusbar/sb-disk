@@ -1,0 +1,15 @@
+#!/bin/sh
+
+location=${1:-/}
+
+[ -d "$location" ] || exit
+
+case $BLOCK_BUTTON in
+	1) baobab ;;
+	3) notify-send " Disk space" "$(df -h --output=target,used,size)" ;;
+	6) code "$0" ;;
+esac
+
+
+
+printf "^B2^^C0^%s %s\n" "" "$(df -h "$location" | awk ' /[0-9]/ {print $3 "/" $2}')"

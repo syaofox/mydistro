@@ -1,0 +1,35 @@
+#!/bin/sh
+
+
+case $BLOCK_BUTTON in
+	1) pavucontrol;;
+	2) pamixer -t ;;
+	4) pamixer --allow-boost -i 1; pkill -RTMIN+3 dwmblocks ;;
+	5) pamixer --allow-boost -d 1; pkill -RTMIN+3 dwmblocks ;;
+	3) notify-send "Volume module" "\- Shows volume  , 婢 if muted.
+- Middle click to mute.
+- Scroll to change." ;;
+	6) code "$0" ;;
+esac
+
+if [ $(pamixer --get-mute) = true ]; then
+	echo "^B5^^C0^婢"
+	exit
+fi
+
+vol="$(pamixer --get-volume)"
+[ $? -ne 0 ] && exit $?
+
+if [ "$vol" -gt 70 ]; then
+	icon=""
+elif [ "$vol" -gt 40 ]; then
+	icon="墳"
+elif [ "$vol" -gt 10 ]; then
+	icon=""
+else
+	icon="奄"
+fi
+
+echo "^B5^^C0^$icon $vol%"
+
+
