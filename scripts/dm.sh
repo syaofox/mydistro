@@ -479,20 +479,20 @@ installsoftwaresmenu() {
 	done
 		
 	clear
-    if [ ${parupkgs} ]; then
+    if [ -n "${parupkgs}" ]; then
         tip "pacman -S ${pacmanpkgs}"
         sudo pacman -S --noconfirm ${pacmanpkgs}
         pressanykey
     fi
 
-    if [ ${parupkgs} ]; then
+    if [ -n "${parupkgs}" ]; then
         tip "paru -S ${parupkgs}"
         paru -S --noconfirm ${parupkgs}
         pressanykey
     fi
 
    
-    if [ $configmpv = 1 ]; then
+    if [ "$configmpv" = 1 ]; then
         tip "Config mpv"
         mkdir ~/.config
         cp -r /usr/share/doc/mpv/ ~/.config/
@@ -508,7 +508,7 @@ installsoftwaresmenu() {
         pressanykey
     fi
 
-    if [ $configvm = 1 ]; then
+    if [ "$configvm" = 1 ]; then
         tip "Config vm"
         sudo systemctl enable libvirtd
         sudo usermod -aG libvirt $USERNAME 
