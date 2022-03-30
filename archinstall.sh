@@ -58,6 +58,9 @@ source ${PWDIR}/scripts/chroot.sh
 source ${PWDIR}/scripts/dm.sh
 source ${PWDIR}/scripts/dwm.sh
 source ${PWDIR}/scripts/gnome.sh
+source ${PWDIR}/scripts/kde.sh
+source ${PWDIR}/scripts/xfce.sh
+source ${PWDIR}/scripts/lxqt.sh
 
 
 # tip "${PWDIR}"
