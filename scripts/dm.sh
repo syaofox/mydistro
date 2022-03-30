@@ -91,15 +91,22 @@ configmenu() {
     if [ "$?" = "0" ]; then
 		case ${sel} in
             "${txtoverwrightcommondotfiles}")
+				clear
 				overwrightdotfiles common
+				pressanykey
 				nextitem="${txtoverwrightcommondotfiles}"
+				
 			;;
             "${txtoverwrightdwmdotfiles}")
+				clear
 				overwrightdotfiles dwm
+				pressanykey
 				nextitem="${txtoverwrightdwmdotfiles}"
 			;;
             "${txtoverwrightgnomedotfiles}")
+				clear
 				overwrightdotfiles gnome
+				pressanykey
 				nextitem="${txtoverwrightgnomedotfiles}"
 			;;
         esac
@@ -184,7 +191,7 @@ installparu() {
 
 
 overwrightdotfiles() {
-	clear
+	
 
 	tip "cp -avf ${PWDIR}/dotfiles/${1:-common}/users/. ~/"
     cp -avf $PWDIR/dotfiles/${1:-common}/users/. ~/ 
@@ -195,7 +202,7 @@ overwrightdotfiles() {
 	xrdb -merge ~/.config/X11/Xresources/nord 
 	
 	sudo systemctl enable fstrim.timer
-	pressanykey
+	
 }
 
 configgit() {

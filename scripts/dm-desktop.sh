@@ -74,21 +74,22 @@ installsuckless(){
 		fi
 		
 		which ${item}
-		pressanykey	        
+			        
 	done
+
+	tip "sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome maim xclip"
+	sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome maim xclip
+	tip "paru -S  j4-dmenu-desktop"
+	paru -S  j4-dmenu-desktop      
+	sudo systemctl enable udisks2
+	pressanykey
 }
 
 configsuckless() {
 	clear
 
 
-	tip "sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome"
-	sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome
-	pressanykey
-	paru -S  j4-dmenu-desktop   
-
-    # sudo systemctl enable ly
-	sudo systemctl enable udisks2
+	
 	
 	tip "Modify .xinitrc"
     cp /etc/X11/xinit/xinitrc ~/.xinitrc
