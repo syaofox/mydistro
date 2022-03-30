@@ -378,6 +378,7 @@ installdesktopmenu() {
 	options+=("${txtinstallgnome}" "")
 	options+=("${txtinstallkde}" "")
 	options+=("${txtinstallxfce}" "")
+	options+=("${txtinstalllxqt}" "")
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstalldesktopmenu}" --menu "" --cancel-button "${txtexit}" --default-item "${nextitem}" 0 0 0 \
 		"${options[@]}" \
