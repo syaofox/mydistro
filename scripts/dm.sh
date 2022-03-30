@@ -375,6 +375,7 @@ installdesktopmenu() {
 
     options=()
 	options+=("${txtinstalldwm}" "")
+	options+=("${txtinstallgnome}" "")
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstalldesktopmenu}" --menu "" --cancel-button "${txtexit}" --default-item "${nextitem}" 0 0 0 \
 		"${options[@]}" \
@@ -385,6 +386,11 @@ installdesktopmenu() {
 				installdwmmenu
                 pressanykey
 				nextitem="${txtinstalldwm}"
+			;;
+			"${txtinstallgnome}")
+				installgnomemenu
+                pressanykey
+				nextitem="${txtinstallgnome}"
 			;;
         esac
 		installdesktopmenu "${nextitem}"

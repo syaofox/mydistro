@@ -55,8 +55,9 @@ archchroot(){
 
 source ${PWDIR}/scripts/base.sh
 source ${PWDIR}/scripts/chroot.sh
-source ${PWDIR}/scripts/dm-desktop.sh
 source ${PWDIR}/scripts/dm.sh
+source ${PWDIR}/scripts/dwm.sh
+source ${PWDIR}/scripts/gnome.sh
 
 
 # tip "${PWDIR}"
