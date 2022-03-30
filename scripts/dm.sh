@@ -199,7 +199,7 @@ overwrightdotfiles() {
 	tip "sudo cp -avf $PWDIR/dotfiles/${1:-common}/root/. /"
     sudo cp -avf $PWDIR/dotfiles/${1:-common}/root/. /
 	xrdb ~/.Xresources
-	xrdb -merge ~/.config/X11/Xresources/nord 
+	xrdb -merge ~/.config/X11/Xresources/nord-dark
 	
 	sudo systemctl enable fstrim.timer
 	
