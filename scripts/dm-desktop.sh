@@ -85,9 +85,9 @@ configsuckless() {
 	tip "sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome"
 	sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome
 	pressanykey
-	paru -S  ly
+	paru -S  j4-dmenu-desktop   
 
-    sudo systemctl enable ly
+    # sudo systemctl enable ly
 	sudo systemctl enable udisks2
 	
 	tip "Modify .xinitrc"
@@ -98,6 +98,7 @@ configsuckless() {
     sed -i "/^xterm -geometry 80x20+494-0 &/d" ~/.xinitrc
     sed -i "/^exec xterm -geometry 80x66+0+0 -name login/d" ~/.xinitrc        
 
+    echo  "xrdb -merge ~/.config/X11/Xresources/nord-dark" >> ~/.xinitrc 
     echo  "exec dwm" >> ~/.xinitrc 
 
 	overwrightdotfiles common
