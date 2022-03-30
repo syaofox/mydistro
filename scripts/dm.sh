@@ -296,8 +296,7 @@ installfontsmenu() {
 	options+=("noto-fonts-cjk" "" on)
 	options+=("noto-fonts-emoji" "" on)
 	options+=("ttf-roboto-mono" "" on)	
-	options+=("ttf-roboto" "" on)	
-	options+=("ttf-symbola" "" on)	
+	options+=("ttf-roboto" "" on)		
 	options+=("ttf-joypixels" "" on)	
 	options+=("ttf-sarasa-gothic" "" on)	
 
@@ -316,6 +315,7 @@ installfontsmenu() {
 	done
 
     options=()
+	options+=("ttf-symbola" "" on)
     options+=("nerd-fonts-ibm-plex-mono" "" on)	
     options+=("nerd-fonts-fira-code" "" on)	
     options+=("nerd-fonts-jetbrains-mono" "" on)	
