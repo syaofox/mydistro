@@ -12,17 +12,18 @@ else
 fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-# eval "$(dbus-launch --sh-syntax --exit-with-session)" &
 
-# # see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
-# source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+eval "$(dbus-launch --sh-syntax --exit-with-session)" &
 
-# # see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
-# eval $(/usr/bin/gnome-keyring-daemon --start)
-# export SSH_AUTH_SOCK
+# see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
+source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
-# # see https://github.com/NixOS/nixpkgs/issues/14966#issuecomment-520083836
-# mkdir -p "$HOME"/.local/share/keyrings
+# see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
+eval $(/usr/bin/gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
+# see https://github.com/NixOS/nixpkgs/issues/14966#issuecomment-520083836
+mkdir -p "$HOME"/.local/share/keyrings
 
 xautolock -time 10 -locker '/usr/local/bin/slock' -corners ---- -cornersize 30 &
 /bin/bash ~/.fehbg

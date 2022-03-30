@@ -64,12 +64,14 @@ txtconfiggit="Config git"
 txtconfiggitname="Config git username"
 txtconfiggitmail="Config git mail"
 txtinstallzsh="Install zsh"
+txtinstallthemes="Install themes"
+txtinstallfonts="Install fonts"
 
 txtinstalldesktop="Install desktop environment"
 txtinstalldesktopmenu="Install desktop menu"
 
 txtinstalldwm="Install dwm"
-
+txtinstallsoftwares="Install softwares"
 
 configmenu() {
     if [ "${1}" = "" ]; then
@@ -133,12 +135,27 @@ desktopmenu() {
 			;;
             "${txtinstallzsh}")
 				installzsh
+				nextitem="${txtinstallthemes}"
+			;;
+
+			 "${txtinstallthemes}")
+				installthemes
+				nextitem="${txtinstallfonts}"
+			;;
+			"${txtinstallfonts}")
+				installfontsmenu
 				nextitem="${txtinstalldesktop}"
 			;;
-             "${txtinstalldesktop}")
+
+			"${txtinstalldesktop}")
 				installdesktopmenu
-				nextitem="${txtinstallthemes}"
+				nextitem="${txtinstallsoftwares}"
 			;;  
+
+			"${txtinstallsoftwares}")
+				installsoftwaresmenu
+				nextitem="${txtinstallsoftwares}"
+			;;
         esac
 		desktopmenu "${nextitem}"
 	fi
@@ -174,6 +191,7 @@ overwrightdotfiles() {
 	xrdb ~/.Xresources
 	xrdb -merge ~/.config/X11/Xresources/nord 
 	
+	sudo systemctl enable fstrim.timer
 	pressanykey
 }
 
@@ -208,6 +226,135 @@ installzsh() {
     pressanykey
 }
 
+installthemes() {
+	options=()
+	options+=("mint" "" on)
+    options+=("arc" "" off)	
+    options+=("papirus" "" off)		
+	options+=("breeze" "" off)	
+	options+=("orchis" "" off)	
+	options+=("nordic" "" off)
+	options+=("qogir" "" off)
+
+	sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstallarchlinuxfilesystems}" --checklist "" 0 0 0 \
+		"${options[@]}" \
+		3>&1 1>&2 2>&3)
+	if [ ! "$?" = "0" ]; then
+		return 1
+	fi
+    pacmanpkgs=""
+    parupkgs=""
+	for itm in $sel; do
+        item=$(echo $itm | sed 's/"//g')
+        case ${item} in
+            
+			"arc")
+                pacmanpkgs="$pacmanpkgs arc-gtk-theme arc-icon-theme"
+				
+			;;
+			"papirus")
+
+				pacmanpkgs="$pacmanpkgs papirus-icon-theme"
+            ;;
+			"breeze")                
+				pacmanpkgs="$pacmanpkgs breeze breeze-icons breeze-gtk"
+            ;;
+			"mint")                
+				parupkgs="$parupkgs mint-themes mint-x-icons mint-y-icons"
+            ;;
+			"orchis")                
+				parupkgs="$parupkgs orchis-theme"
+            ;;
+			"nordic")                
+				parupkgs="$parupkgs nordic-theme"
+            ;;			
+			"qogir")                
+				parupkgs="$parupkgs  qogir-gtk-theme  fluent-cursor-theme-git qogir-icon-theme"
+            ;;			
+		esac
+	done
+		
+	clear
+
+	tip "pacman -S ${pacmanpkgs}"
+	sudo pacman -S --noconfirm ${pacmanpkgs}
+	pressanykey
+
+	tip "paru -S ${parupkgs}"
+	paru -S --noconfirm ${parupkgs}
+	pressanykey 
+}
+
+installfontsmenu() {
+          	  
+    options=()
+ 
+    options+=("noto-fonts" "" on)	
+	options+=("noto-fonts-cjk" "" on)
+	options+=("noto-fonts-emoji" "" on)
+	options+=("ttf-roboto-mono" "" on)	
+	options+=("ttf-roboto" "" on)	
+	options+=("ttf-symbola" "" on)	
+	options+=("ttf-joypixels" "" on)	
+	options+=("ttf-sarasa-gothic" "" on)	
+
+
+	sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstallfonts}-pacman" --checklist "" 0 0 0 \
+		"${options[@]}" \
+		3>&1 1>&2 2>&3)
+	if [ ! "$?" = "0" ]; then
+		return 1
+	fi
+    pacmanpkgs=""
+    parupkgs=""
+
+    for itm in $sel; do
+		pacmanpkgs="$pacmanpkgs $(echo $itm | sed 's/"//g')"
+	done
+
+    options=()
+    options+=("nerd-fonts-ibm-plex-mono" "" on)	
+    options+=("nerd-fonts-fira-code" "" on)	
+    options+=("nerd-fonts-jetbrains-mono" "" on)	
+    sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstallfonts}-aur" --checklist "" 0 0 0 \
+		"${options[@]}" \
+		3>&1 1>&2 2>&3)
+
+	if [ ! "$?" = "0" ]; then
+		return 1
+	fi
+    
+    for itm in $sel; do
+		parupkgs="$parupkgs $(echo $itm | sed 's/"//g')"
+	done
+
+
+    clear
+		
+	tip "pacman -S ${pacmanpkgs}"
+	sudo pacman -S --noconfirm ${pacmanpkgs}
+	pressanykey
+
+    clear
+	tip "paru -S ${parupkgs}"
+	paru -S --noconfirm ${parupkgs}
+	pressanykey  
+
+    clear
+    tip "Install fcitx5"
+    sudo pacman -S --noconfirm fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-nord fcitx5-pinyin-zhwiki 
+    paru -S --noconfirm fcitx5-pinyin-moegirl
+    
+
+    tip "Open freetype2"
+    sudo sed -i 's/#\(export FREETYPE_PROPERTIES\)/\1/' /etc/profile.d/freetype2.sh
+    cat /etc/profile.d/freetype2.sh
+    pressanykey
+
+
+  
+}
+
 
 installdesktopmenu() {
     if [ "${1}" = "" ]; then
@@ -233,4 +380,135 @@ installdesktopmenu() {
 		installdesktopmenu "${nextitem}"
 	fi
 
+}
+
+installsoftwaresmenu() {
+
+    # vdhcoapp-bin firefox freedownloadmanager visual-studio-code-bin xnconvert xnviewmp lx-music-desktop-bin gimp bulky 
+    options=()
+    options+=("codecs" "" on)	
+    options+=("mpv" "" on)	
+    options+=("vlc" "" off)	
+	options+=("firefox" "  Standalone web browser from mozilla.org" on)
+	options+=("freedownloadmanager" "" on)
+	options+=("visual-studio-code-bin" "" on)
+	options+=("xnconvert" "" on)
+	options+=("xnviewmp" "" on)
+	options+=("lx-music-desktop-bin" "" on)	
+	options+=("gimp" "" on)	
+	options+=("bulky" "" on)
+    options+=("ffmpegthumbnailer" "" on)		
+	options+=("ark" "" on)	
+	options+=("xarchiver" "" off)	
+	options+=("file-roller" "" off)	
+	options+=("engrampa" "" off)	
+	options+=("vm" "" off)	
+	pacmanpkgs=""
+    parupkgs=""
+	
+    configmpv=0
+    configvm=0
+
+	sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstallarchlinuxfilesystems}" --checklist "" 0 0 0 \
+		"${options[@]}" \
+		3>&1 1>&2 2>&3)
+	if [ ! "$?" = "0" ]; then
+		return 1
+	fi
+	for itm in $sel; do
+        item=$(echo $itm | sed 's/"//g')
+        case ${item} in
+            
+			"codecs")
+                pacmanpkgs="$pacmanpkgs gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly"
+				
+			;;
+			"mpv")
+                configmpv=1
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;
+			"firefox")                
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;
+			"freedownloadmanager")                
+				parupkgs="$parupkgs $item vdhcoapp-bin"
+            ;;
+			"visual-studio-code-bin")                
+				parupkgs="$parupkgs $item"
+            ;;
+			"xnconvert")                
+				parupkgs="$parupkgs $item"
+            ;;
+			"xnviewmp")                
+				parupkgs="$parupkgs $item"
+            ;;
+			"lx-music-desktop-bin")                
+				parupkgs="$parupkgs $item"
+            ;;
+			"gimp")                
+				parupkgs="$parupkgs $item"
+            ;;
+			"bulky")                
+				parupkgs="$parupkgs $item"
+            ;;
+			"ffmpegthumbnailer")                
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;
+			"ark")                
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;
+			"xarchiver")                
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;
+			"file-roller")                
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;
+			"engrampa")                
+				pacmanpkgs="$pacmanpkgs $item"
+            ;;			
+			"vm")
+                configvm=1         
+				pacmanpkgs="$pacmanpkgs virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat libguestfs"
+            ;;			
+		esac
+
+	done
+		
+	clear
+    if [ ${parupkgs} ]; then
+        tip "pacman -S ${pacmanpkgs}"
+        sudo pacman -S --noconfirm ${pacmanpkgs}
+        pressanykey
+    fi
+
+    if [ ${parupkgs} ]; then
+        tip "paru -S ${parupkgs}"
+        paru -S --noconfirm ${parupkgs}
+        pressanykey
+    fi
+
+   
+    if [ $configmpv = 1 ]; then
+        tip "Config mpv"
+        mkdir ~/.config
+        cp -r /usr/share/doc/mpv/ ~/.config/
+        echo "sub-auto=fuzzy" >> ~/.config/mpv/mpv.conf
+        echo "profile=gpu-hq" >> ~/.config/mpv/mpv.conf
+        echo "scale=ewa_lanczossharp" >> ~/.config/mpv/mpv.conf
+        echo "cscale=ewa_lanczossharp" >> ~/.config/mpv/mpv.conf
+        echo "video-sync=display-resample" >> ~/.config/mpv/mpv.conf
+        echo "interpolation" >> ~/.config/mpv/mpv.conf
+        echo "tscale=oversample" >> ~/.config/mpv/mpv.conf 
+
+        tail -n 10 ${HOME}/.config/mpv/mpv.conf
+        pressanykey
+    fi
+
+    if [ $configvm = 1 ]; then
+        tip "Config vm"
+        sudo systemctl enable libvirtd
+        sudo usermod -aG libvirt $USERNAME 
+        id
+        pressanykey
+    fi
 }
