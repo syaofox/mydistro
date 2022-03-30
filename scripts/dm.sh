@@ -177,12 +177,6 @@ overwrightdotfiles() {
 	pressanykey
 }
 
-overwrightcommondotfiles(){
-    clear
-    overwrightdotfiles common
-    pressanykey
-}
-
 configgit() {
     tip "Config git..."
 

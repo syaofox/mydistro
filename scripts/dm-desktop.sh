@@ -1,5 +1,6 @@
 txtinstalldwm="Install dwm"
 txtinstallsuckless="Install suckless software"
+txtconfigsuckless="Config dwm"
 
 installdwmmenu() {
     if [ "${1}" = "" ]; then
@@ -18,7 +19,11 @@ installdwmmenu() {
 		case ${sel} in
 			"${txtinstallsuckless}")
 				installsuckless
-				nextitem="${txtinstalldm}"
+				nextitem="${txtconfigsuckless}"
+			;;
+			"${txtconfigsuckless}")
+				configsuckless
+				nextitem="${txtconfigsuckless}"
 			;;
         esac
 		installdwmmenu "${nextitem}"
@@ -70,4 +75,27 @@ installsuckless(){
 		which ${item}
 		pressanykey	        
 	done
+}
+
+configsuckless() {
+	clear
+
+	paru -S --noconfirm ly
+    
+	
+	tip "Modify .xinitrc"
+    cp /etc/X11/xinit/xinitrc ~/.xinitrc
+    sed -i "/^twm &/d" ~/.xinitrc
+    sed -i "/^xclock -geometry 50x50-1+1 &/d" ~/.xinitrc
+    sed -i "/^xterm -geometry 80x50+494+51 &/d" ~/.xinitrc
+    sed -i "/^xterm -geometry 80x20+494-0 &/d" ~/.xinitrc
+    sed -i "/^exec xterm -geometry 80x66+0+0 -name login/d" ~/.xinitrc        
+
+    cat  "exec dwm" >> ~/.xinitrc 
+
+	overwrightdotfiles common
+	overwrightdotfiles dwm  
+	
+	sudo systemctl enable ly
+	pressanykey
 }
