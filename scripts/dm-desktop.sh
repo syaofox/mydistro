@@ -35,7 +35,7 @@ installsuckless(){
     options+=("dwm" "" on)    	
     options+=("st" "" on)
     options+=("dmenu" "" on)	
-    options+=("dwmblock" "" on)	
+    options+=("dwmblockdwmblocks-async" "" on)	
     options+=("slock" "" on)
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstallsuckless}" --checklist "" 0 0 0 \
@@ -47,37 +47,26 @@ installsuckless(){
 
     for itm in $sel; do
         item=$(echo $itm | sed 's/"//g')
-        case ${item} in            
-			"dwm")
-                clear
-                tip "Install dwm"
-                cd $SUCKLESSDIR
-                rm -rf $SUCKLESSDIR/dwm
-                git clone https://github.com/syaofox/dwm.git $SUCKLESSDIR/dwm
-                cd $SUCKLESSDIR/dwm
-                git checkout main
-                git branch  
-                sudo make clean install
-                make clean
-                rm -f confg.h
-                which dwm
-                pressanykey				
-            ;;
-            "st")
-                clear
-                tip "Installing st..."
-                cd $SUCKLESSDIR
-                rm -rf $SUCKLESSDIR/st
-                git clone https://github.com/syaofox/st.git $SUCKLESSDIR/st
-                cd $SUCKLESSDIR/st
-                git checkout main
-                git branch    
-                sudo make clean install
-                make clean
-                rm -f confg.h
-                which st
-                pressanykey				
-			;;
-        esac 
+
+		 clear
+		tip "Install $item"
+		cd $SUCKLESSDIR
+		if [ -d "$SUCKLESSDIR" ]; then
+			rm -r $SUCKLESSDIR/${item}
+			tip "rm $SUCKLESSDIR/${item}"
+		fi
+		git clone https://github.com/syaofox/${item}.git $SUCKLESSDIR/${item}
+		cd $SUCKLESSDIR/${item}
+		git checkout main
+		git branch  
+		sudo make clean install
+		make clean
+		if [ -f "confg.def.h" ]; then
+			rm -f confg.h
+			tip "rm config.h"
+		fi
+		
+		which ${item}
+		pressanykey	        
 	done
 }
