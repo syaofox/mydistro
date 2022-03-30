@@ -434,7 +434,8 @@ installsoftwaresmenu() {
 				pacmanpkgs="$pacmanpkgs $item"
             ;;
 			"freedownloadmanager")                
-				parupkgs="$parupkgs $item vdhcoapp-bin"
+				parupkgs="$parupkgs $item"
+				pacmanpkgs="$pacmanpkgs vdhcoapp-bin"
             ;;
 			"visual-studio-code-bin")                
 				parupkgs="$parupkgs $item"
