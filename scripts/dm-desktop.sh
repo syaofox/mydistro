@@ -83,7 +83,7 @@ configsuckless() {
 
 	sudo pacman -S xorg xorg-xinit
 	pressanykey
-	tip "sudo pacman -S picom lxappearance qt5ct nautilus ark feh jq zfz baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome"
+	tip "sudo pacman -S picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome"
 	sudo pacman -S picom lxappearance qt5ct nautilus ark feh jq zfz baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome
 	pressanykey
 	paru -S  ly
