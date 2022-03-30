@@ -147,6 +147,10 @@ desktopmenu() {
 installparu() {
     clear   
     tip "Install Paru ${REPODIR}"
+	if [ -d "$REPODIR/paru" ]; then
+		rm -r $REPODIR/paru
+		tip "rm $REPODIR/paru"
+	fi
     mkdir -p $REPODIR
     cd $REPODIR
     git clone https://aur.archlinux.org/paru.git $REPODIR/paru
