@@ -148,7 +148,7 @@ installparu() {
     clear   
     tip "Install Paru ${REPODIR}"
 	if [ -d "$REPODIR/paru" ]; then
-		rm -r $REPODIR/paru
+		rm -rf $REPODIR/paru
 		tip "rm $REPODIR/paru"
 	fi
     mkdir -p $REPODIR
