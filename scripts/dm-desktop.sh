@@ -11,6 +11,7 @@ installdwmmenu() {
 
 	options=()
 	options+=("${txtinstallsuckless}" "")
+	options+=("${txtconfigsuckless}" "")
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstalldwm}" --menu "" --cancel-button "${txtexit}" --default-item "${nextitem}" 0 0 0 \
 		"${options[@]}" \
