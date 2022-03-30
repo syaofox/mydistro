@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbel version="1.0"
+      xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks"
+      xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
+>
+  <bookmark href="smb://openwrt/" added="2022-03-29T08:40:01.511283Z" modified="2022-03-30T02:08:52.451695Z" visited="2022-03-30T02:08:52.451690Z">
+    <title>Windows shares on openwrt</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-03-30T02:08:52.451693Z" count="5"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="smb://10.10.10.1/" added="2022-03-29T08:40:39.265224Z" modified="2022-03-29T08:40:39.265237Z" visited="2022-03-29T08:40:39.265231Z">
+    <title>Windows shares on 10.10.10.1</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-03-29T08:40:39.265233Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+</xbel>
