@@ -376,6 +376,8 @@ installdesktopmenu() {
     options=()
 	options+=("${txtinstalldwm}" "")
 	options+=("${txtinstallgnome}" "")
+	options+=("${txtinstallkde}" "")
+	options+=("${txtinstallxfce}" "")
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstalldesktopmenu}" --menu "" --cancel-button "${txtexit}" --default-item "${nextitem}" 0 0 0 \
 		"${options[@]}" \
@@ -391,6 +393,21 @@ installdesktopmenu() {
 				installgnomemenu
                 pressanykey
 				nextitem="${txtinstallgnome}"
+			;;
+			"${txtinstallkde}")
+				installkde
+                pressanykey
+				nextitem="${txtinstallkde}"
+			;;
+			"${txtinstallxfce}")
+				installxfce
+                pressanykey
+				nextitem="${txtinstallxfce}"
+			;;
+			"${txtinstalllxqt}")
+				installlxqt
+				pressanykey
+				nextitem="${txtinstalllxqt}"
 			;;
         esac
 		installdesktopmenu "${nextitem}"
