@@ -85,8 +85,6 @@ configsuckless() {
 	
 	sudo pacman -S picom lxappearance qt5ct  nautilus  ark feh jq zfz baobab xautolock xfce4-power-manager xfce4-screenshooter eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome
   
-
-
 	paru -S  ly
 
     sudo systemctl enable ly
@@ -100,7 +98,7 @@ configsuckless() {
     sed -i "/^xterm -geometry 80x20+494-0 &/d" ~/.xinitrc
     sed -i "/^exec xterm -geometry 80x66+0+0 -name login/d" ~/.xinitrc        
 
-    cat  "exec dwm" >> ~/.xinitrc 
+    echo  "exec dwm" >> ~/.xinitrc 
 
 	overwrightdotfiles common
 	overwrightdotfiles dwm  
