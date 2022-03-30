@@ -118,7 +118,10 @@ desktopmenu() {
 	options+=("${txtinstallparu}" "")
     options+=("${txtconfiggit}" "")
     options+=("${txtinstallzsh}" "")
+    options+=("${txtinstallthemes}" "")
+    options+=("${txtinstallfonts}" "")
     options+=("${txtinstalldesktop}" "")
+    options+=("${txtinstallsoftwares}" "")
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstalldesktopenvironment}" --menu "" --cancel-button "${txtexit}" --default-item "${nextitem}" 0 0 0 \
 		"${options[@]}" \
