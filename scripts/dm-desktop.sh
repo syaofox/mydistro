@@ -87,9 +87,6 @@ installsuckless(){
 
 configsuckless() {
 	clear
-
-
-	
 	
 	tip "Modify .xinitrc"
     cp /etc/X11/xinit/xinitrc ~/.xinitrc
@@ -97,7 +94,8 @@ configsuckless() {
     sed -i "/^xclock -geometry 50x50-1+1 &/d" ~/.xinitrc
     sed -i "/^xterm -geometry 80x50+494+51 &/d" ~/.xinitrc
     sed -i "/^xterm -geometry 80x20+494-0 &/d" ~/.xinitrc
-    sed -i "/^exec xterm -geometry 80x66+0+0 -name login/d" ~/.xinitrc        
+    sed -i "/^exec xterm -geometry 80x66+0+0 -name login/d" ~/.xinitrc 
+	       
 
     echo  "xrdb -merge ~/.config/X11/Xresources/nord-dark" >> ~/.xinitrc 
     echo  "exec dwm" >> ~/.xinitrc 
