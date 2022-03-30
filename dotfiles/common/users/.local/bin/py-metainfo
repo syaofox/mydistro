@@ -2,7 +2,6 @@
 
 
 source ~/Repos/metainfo/.venv/bin/activate
-echo $1
-# python ~/Repos/metainfo/crawl.py $1 $2 
+python ~/Repos/metainfo/crawl.py $@
 
 deactivate
