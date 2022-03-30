@@ -35,7 +35,7 @@ installsuckless(){
     options+=("dwm" "" on)    	
     options+=("st" "" on)
     options+=("dmenu" "" on)	
-    options+=("dwmblockdwmblocks-async" "" on)	
+    options+=("dwmblocks-async" "" on)	
     options+=("slock" "" on)
 
     sel=$(whiptail --backtitle "${apptitle}" --title "${txtinstallsuckless}" --checklist "" 0 0 0 \
@@ -51,9 +51,10 @@ installsuckless(){
 		 clear
 		tip "Install $item"
 		cd $SUCKLESSDIR
-		if [ -d "$SUCKLESSDIR" ]; then
-			rm -r $SUCKLESSDIR/${item}
+		if [ -d "$SUCKLESSDIR/${item}" ]; then
 			tip "rm $SUCKLESSDIR/${item}"
+			rm -r $SUCKLESSDIR/${item}
+			
 		fi
 		git clone https://github.com/syaofox/${item}.git $SUCKLESSDIR/${item}
 		cd $SUCKLESSDIR/${item}
