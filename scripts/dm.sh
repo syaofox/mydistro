@@ -509,7 +509,7 @@ installsoftwaresmenu() {
 	done
 		
 	clear
-    if [ -n "${parupkgs}" ]; then
+    if [ -n "${pacmanpkgs}" ]; then
         tip "pacman -S ${pacmanpkgs}"
         sudo pacman -S --noconfirm ${pacmanpkgs}
         pressanykey
