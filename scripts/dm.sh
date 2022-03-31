@@ -542,6 +542,7 @@ installsoftwaresmenu() {
         tip "Config vm"
         sudo systemctl enable libvirtd
         sudo usermod -aG libvirt $USERNAME 
+		sudo echo "tun" | sudo tee /etc/modules-load.d/tun.conf
         id
         pressanykey
     fi
