@@ -231,8 +231,8 @@ installzsh() {
     tip "Install zsh..."
     sudo pacman -S --noconfirm zsh 
     paru -S --noconfirm zplug
-    cp ${PWDIR}/dotfiles/init/.zshrc ~/.zshrc
-    cat ${HOME}/.zshrc
+    # cp ${PWDIR}/dotfiles/init/.zshrc ~/.zshrc
+    # cat ${HOME}/.zshrc
     pressanykey
 }
 
