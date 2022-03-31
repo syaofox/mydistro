@@ -77,8 +77,8 @@ installsuckless(){
 			        
 	done
 
-	tip "sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome maim xclip"
-	sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome maim xclip
+	tip "sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome maim xclip light"
+	sudo pacman -S xorg xorg-xinit picom lxappearance qt5ct nautilus ark feh jq fzf baobab xautolock xfce4-power-manager eog webp-pixbuf-loader gnome-calculator parcellite numlockx dunst libnotify udisks2 udiskie gnome-keyring libsecret libgnome-keyring seahorse polkit-gnome maim xclip light
 	tip "paru -S  j4-dmenu-desktop"
 	paru -S  j4-dmenu-desktop      
 	sudo systemctl enable udisks2
