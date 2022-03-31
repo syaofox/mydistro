@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-
-source ~/Repos/manga_man/.venv/bin/activate
-python ~/Repos/manga_man/manga_man.py $@
-
-notify-send 'manga_man' '下载完成!!!\n下载完成!!!\n下载完成!!!\n下载完成!!!\n下载完成!!!\n'
-deactivate
